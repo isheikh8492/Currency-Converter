@@ -22,21 +22,15 @@ def initialize_gui():
     window.title("Currency Converter")
     window.geometry('540x190')
 
-
-    # def ComboBox_state_change():
-
-
-
-
-
-
-
-
-
-
+    def comboBox_state_change(event):
+        if str(event.widget) == ".!combobox":
+            input1.delete(0, 'end')
+            input1.insert(0, currency_calculation(input2.get(), clicked2.get(), clicked1.get()))
+        if str(event.widget) == ".!combobox2":
+            input2.delete(0, 'end')
+            input2.insert(0, currency_calculation(input1.get(), clicked1.get(), clicked2.get()))
 
     def entry_widget_state_change(key):
-
         if str(key.widget) == ".!entry":
             input1_new_key = key.char
             if str(key.char).isdigit():
@@ -77,10 +71,11 @@ def initialize_gui():
     drop1 = ttk.Combobox(window, width=26, textvariable=clicked1)
     drop1['values'] = options
     drop1.place(x=150, y=151, anchor="sw")
+    drop1.bind("<<ComboboxSelected>>", comboBox_state_change)
     drop2 = ttk.Combobox(window, width=26, textvariable=clicked2)
     drop2['values'] = options
     drop2.place(x=150, y=181, anchor="sw")
-
+    drop2.bind("<<ComboboxSelected>>", comboBox_state_change)
 
     def switch_btn_click():
         temp = StringVar()
