@@ -1,5 +1,5 @@
 from tkinter import *
-from file_reader import data
+from tkinter import ttk
 from PIL import ImageTk, Image
 from currency_data import live_curr_data
 from file_reader import data
@@ -21,6 +21,19 @@ def initialize_gui():
     # set up the geometry of the GUI
     window.title("Currency Converter")
     window.geometry('540x190')
+
+
+    # def ComboBox_state_change():
+
+
+
+
+
+
+
+
+
+
 
     def entry_widget_state_change(key):
 
@@ -61,10 +74,13 @@ def initialize_gui():
     input2.insert(0, live_curr_data[data["United States Dollar"]])
 
     # Create Dropdown menus
-    drop1 = OptionMenu(window, clicked1, *options)
-    drop1.place(x=150, y=156, anchor="sw")
-    drop2 = OptionMenu(window, clicked2, *options)
-    drop2.place(x=150, y=186, anchor="sw")
+    drop1 = ttk.Combobox(window, width=26, textvariable=clicked1)
+    drop1['values'] = options
+    drop1.place(x=150, y=151, anchor="sw")
+    drop2 = ttk.Combobox(window, width=26, textvariable=clicked2)
+    drop2['values'] = options
+    drop2.place(x=150, y=181, anchor="sw")
+
 
     def switch_btn_click():
         temp = StringVar()
