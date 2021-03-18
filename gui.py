@@ -29,6 +29,7 @@ def initialize_gui():
         if str(event.widget) == ".!combobox2":
             input2.delete(0, 'end')
             input2.insert(0, currency_calculation(input1.get(), clicked1.get(), clicked2.get()))
+        var.set("1 " + clicked1.get() + " is equal to " + str(float(live_curr_data[data[clicked2.get()]])/float(live_curr_data[data[clicked1.get()]])) + " " + clicked2.get())
 
     def entry_widget_state_change(key):
         if str(key.widget) == ".!entry":
@@ -39,16 +40,17 @@ def initialize_gui():
             else:
                 input2.delete(0, 'end')
                 input2.insert(0, currency_calculation(input1.get()[0:-1], clicked1.get(), clicked2.get()))
+            var.set("1 " + clicked1.get() + " is equal to " + str(float(live_curr_data[data[clicked2.get()]])/float(live_curr_data[data[clicked1.get()]])) + " " + clicked2.get())
 
         if str(key.widget) == ".!entry2":
             input2_new_key = key.char
             if str(key.char).isdigit():
                 input1.delete(0, 'end')
-                input1.insert(0, currency_calculation(input1.get() + input2_new_key, clicked1.get(), clicked2.get()))
+                input1.insert(0, currency_calculation(input2.get() + input2_new_key, clicked2.get(), clicked1.get()))
             else:
                 input1.delete(0, 'end')
-                input1.insert(0, currency_calculation(input1.get()[0:-1], clicked1.get(), clicked2.get()))
-
+                input1.insert(0, currency_calculation(input2.get()[0:-1], clicked2.get(), clicked1.get()))
+            var.set("1 " + clicked1.get() + " is equal to " + str(float(live_curr_data[data[clicked2.get()]])/float(live_curr_data[data[clicked1.get()]])) + " " + clicked2.get())
     # labels for inputting the amounts
     input1 = Entry(window, width=20, justify="left")
     input1.place(x=15, y=150, anchor="sw")
@@ -77,25 +79,10 @@ def initialize_gui():
     drop2.place(x=150, y=181, anchor="sw")
     drop2.bind("<<ComboboxSelected>>", comboBox_state_change)
 
-    def switch_btn_click():
-        temp = StringVar()
-        temp_input = StringVar()
-        temp.set(clicked1.get())
-        temp_input.set(input1.get())
-        clicked1.set(clicked2.get())
-        input1.delete(0, 'end')
-        input1.insert(0, input2.get())
-        clicked2.set(temp.get())
-        input2.delete(0, 'end')
-        input2.insert(0, temp_input.get())
-
-    # putting image in the switch currency button
-    image = Image.open("images/icon-rotate-13.jpg")
-    btn_img = ImageTk.PhotoImage(image.resize((20, 20)))
-
-    # creating the switch currency button
-    btn = Button(window, image=btn_img, command=switch_btn_click)
-    btn.place(x=283, y=108, anchor="center")
+    var = StringVar()
+    head_label = Label(window, textvariable=var)
+    var.set("1 " + clicked1.get() + " is equal to " + str(float(live_curr_data[data[clicked2.get()]])/float(live_curr_data[data[clicked1.get()]])) + " " + clicked2.get())
+    head_label.place(x=50, y=50, anchor="nw")
 
     window.mainloop()
 
