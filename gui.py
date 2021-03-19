@@ -22,6 +22,20 @@ def initialize_gui():
     window.title("Currency Converter")
     window.geometry('540x190')
 
+    def head_line():
+        var = StringVar()
+        small_label = Label(window, textvariable=var, font="none 10")
+        var.set("1 " + clicked1.get() + " is equal to ")
+        small_label.place(x=10, y=10, anchor="nw")
+        l_var = StringVar()
+        large_label = Label(window, textvariable=l_var, font="none 25")
+        l_var.set(str(round(float(live_curr_data[data[clicked2.get()]]) / float(live_curr_data[data[clicked1.get()]]), 4)))
+        large_label.place(x=10, y=35, anchor="nw")
+        cl_var = StringVar()
+        c_large_label = Label(window, textvariable=cl_var, font="none 20")
+        cl_var.set(clicked2.get())
+        c_large_label.place(x=10, y=85, anchor="nw")
+
     def comboBox_state_change(event):
         if str(event.widget) == ".!combobox":
             input1.delete(0, 'end')
@@ -29,7 +43,7 @@ def initialize_gui():
         if str(event.widget) == ".!combobox2":
             input2.delete(0, 'end')
             input2.insert(0, currency_calculation(input1.get(), clicked1.get(), clicked2.get()))
-        var.set("1 " + clicked1.get() + " is equal to " + str(float(live_curr_data[data[clicked2.get()]])/float(live_curr_data[data[clicked1.get()]])) + " " + clicked2.get())
+        head_line()
 
     def entry_widget_state_change(key):
         if str(key.widget) == ".!entry":
@@ -40,8 +54,6 @@ def initialize_gui():
             else:
                 input2.delete(0, 'end')
                 input2.insert(0, currency_calculation(input1.get()[0:-1], clicked1.get(), clicked2.get()))
-            var.set("1 " + clicked1.get() + " is equal to " + str(float(live_curr_data[data[clicked2.get()]])/float(live_curr_data[data[clicked1.get()]])) + " " + clicked2.get())
-
         if str(key.widget) == ".!entry2":
             input2_new_key = key.char
             if str(key.char).isdigit():
@@ -50,7 +62,9 @@ def initialize_gui():
             else:
                 input1.delete(0, 'end')
                 input1.insert(0, currency_calculation(input2.get()[0:-1], clicked2.get(), clicked1.get()))
-            var.set("1 " + clicked1.get() + " is equal to " + str(float(live_curr_data[data[clicked2.get()]])/float(live_curr_data[data[clicked1.get()]])) + " " + clicked2.get())
+
+        head_line()
+
     # labels for inputting the amounts
     input1 = Entry(window, width=20, justify="left")
     input1.place(x=15, y=150, anchor="sw")
@@ -79,10 +93,7 @@ def initialize_gui():
     drop2.place(x=150, y=181, anchor="sw")
     drop2.bind("<<ComboboxSelected>>", comboBox_state_change)
 
-    var = StringVar()
-    head_label = Label(window, textvariable=var)
-    var.set("1 " + clicked1.get() + " is equal to " + str(float(live_curr_data[data[clicked2.get()]])/float(live_curr_data[data[clicked1.get()]])) + " " + clicked2.get())
-    head_label.place(x=50, y=50, anchor="nw")
+    head_line()
 
     window.mainloop()
 
