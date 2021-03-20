@@ -37,6 +37,12 @@ def initialize_gui():
     window.title("Currency Converter")
     window.geometry('600x210')
 
+    p1 = PhotoImage(
+        file="images/cur_icon2.png")
+
+    # Setting icon of master window
+    window.iconphoto(False, p1)
+
     def graph():
         target_currency = str(data[clicked2.get()])
         init_currency = str(data[clicked1.get()])
