@@ -15,7 +15,7 @@ Libraries/Interface/API used:
 ************************************************************
 
 - Follow the link ahead and download the 'CurrencyConverterInstaller.exe'
-  https://drive.google.com/file/d/1SQiuRsOrilzapIMHFGT0sUKJK8XeXquM/view?usp=sharing
+  https://www.mediafire.com/file/qktl3mbu8c0tfws/CurrencyConverterInstaller.exe/file
 - Locate to the folder you installed the .exe files and then
   launch the 'gui.exe' file.
   
