@@ -8,7 +8,7 @@ A currency conversion application written in Python.
 Libraries/Interface/API used:
 ### Matplotlib library
 ### Tkinter GUI Interface
-### Fixer.io API
+### Fixer.io API ### (for real-time currency data)
 
 ************************************************************
 #### HOW TO ACCESS APPLICATION
