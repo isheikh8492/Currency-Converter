@@ -15,11 +15,17 @@ Libraries/Interface/API used:
 ************************************************************
 
 - Follow the link ahead and download the 'CurrencyConverterInstaller.exe':
-  https://www.mediafire.com/file/qktl3mbu8c0tfws/CurrencyConverterInstaller.exe/file
+  https://www.mediafire.com/file/3mn4mt2cfourptt/CurrencyConverterInstaller.exe/file
 - Locate to the folder you installed the .exe files
-- Head to the 'Currency Converter - Copy' directory
+- Head to the 'Currency Converter' directory
 - Open 'gui.exe'
-  
+
+************************************************************
+#### IMPLEMENTATION
+************************************************************
+
+![currency converter sample](https://user-images.githubusercontent.com/60596395/111884509-0bba8080-8990-11eb-8f08-e9d8dbde14e2.gif)
+    
 ************************************************************
 Created by: Imaduddin Sheikh
 ************************************************************
