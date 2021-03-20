@@ -14,10 +14,11 @@ Libraries/Interface/API used:
 #### HOW TO ACCESS APPLICATION
 ************************************************************
 
-- Follow the link ahead and download the 'CurrencyConverterInstaller.exe'
+- Follow the link ahead and download the 'CurrencyConverterInstaller.exe':
   https://www.mediafire.com/file/qktl3mbu8c0tfws/CurrencyConverterInstaller.exe/file
-- Locate to the folder you installed the .exe files and then
-  launch the 'gui.exe' file.
+- Locate to the folder you installed the .exe files
+- Head to the 'Currency Converter - Copy' directory
+- Open 'gui.exe'
   
 ************************************************************
 Created by: Imaduddin Sheikh
