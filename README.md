@@ -11,7 +11,7 @@ Libraries/Interface/API used:
 ### Fixer.io API
 
 ************************************************************
-### HOW TO ACCESS APPLICATION
+##### HOW TO ACCESS APPLICATION
 ************************************************************
 
 - Follow the link ahead and download the 'CurrencyConverterInstaller.exe'
