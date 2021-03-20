@@ -35,7 +35,7 @@ def initialize_gui():
 
     # set up the geometry of the GUI
     window.title("Currency Converter")
-    window.geometry('600x210')
+    window.geometry('370x300')
 
     p1 = PhotoImage(
         file="images/cur_icon2.png")
@@ -63,37 +63,34 @@ def initialize_gui():
             x_values.append(end_date)
             end_date += delta
 
-        # ax = plt.gca()
-        # formatter = mdates.DateFormatter("%Y-%m-%d")
-        # ax.xaxis.set_major_formatter(formatter)
-        # locator = mdates.DayLocator()
-        # ax.xaxis.set_major_locator(locator)
-        # x_ticks = np.arange(x_values[len(x_values) - 1], x_values[0], datetime.timedelta(days=-15))
-        # plt.xticks(x_ticks)
-        # plt.plot(x_values, y_values)
-
         fig = plt.Figure(figsize=(3, 2), dpi=75)
         ax = fig.add_subplot(111)
         ax.plot(x_values, y_values)
         ax.set_xticks(np.arange(x_values[len(x_values) - 1], x_values[0], datetime.timedelta(days=-15)))
         fig.tight_layout()
         chart = FigureCanvasTkAgg(fig, window)
-        chart.get_tk_widget().place(x=370, y=20, anchor="nw")
+        chart.get_tk_widget().place(x=50, y=20, anchor="nw")
 
-    def head_line():
-        var = StringVar()
-        small_label = Label(window, textvariable=var, font="none 10")
-        var.set("1 " + clicked1.get() + " is equal to ")
-        small_label.place(x=10, y=10, anchor="nw")
-        l_var = StringVar()
-        large_label = Label(window, textvariable=l_var, font="none 25")
-        l_var.set(
-            str(round(float(live_curr_data[data[clicked2.get()]]) / float(live_curr_data[data[clicked1.get()]]), 4)))
-        large_label.place(x=10, y=35, anchor="nw")
-        cl_var = StringVar()
-        c_large_label = Label(window, textvariable=cl_var, font="none 20")
-        cl_var.set(clicked2.get())
-        c_large_label.place(x=10, y=85, anchor="nw")
+    # def head_line():
+    #     initial_i1 = clicked1.get()
+    #     initial_i2 = clicked2.get()
+    #     sample_var = StringVar()
+    #     sample_test = Label(window, textvariable=sample_var)
+    #     sample_var.set(initial_i1 + " " + initial_i2)
+    #     sample_test.place(x=10, y=85, anchor="nw")
+        # var = StringVar()
+        # small_label = Label(window, textvariable=var, font="none 10")
+        # var.set("1 " + clicked1.get() + " is equal to ")
+        # small_label.place(x=10, y=10, anchor="nw")
+        # l_var = StringVar()
+        # large_label = Label(window, textvariable=l_var, font="none 25")
+        # l_var.set(
+        #     str(round(float(live_curr_data[data[clicked2.get()]]) / float(live_curr_data[data[clicked1.get()]]), 4)))
+        # large_label.place(x=10, y=35, anchor="nw")
+        # cl_var = StringVar()
+        # c_large_label = Label(window, textvariable=cl_var, font="none 20")
+        # cl_var.set(clicked2.get())
+        # c_large_label.place(x=10, y=85, anchor="nw")
 
     def comboBox_state_change(event):
         if str(event.widget) == ".!combobox":
@@ -102,7 +99,6 @@ def initialize_gui():
         if str(event.widget) == ".!combobox2":
             input2.delete(0, 'end')
             input2.insert(0, currency_calculation(input1.get(), clicked1.get(), clicked2.get()))
-        head_line()
         graph()
 
     def entry_widget_state_change(key):
@@ -125,10 +121,10 @@ def initialize_gui():
 
     # labels for inputting the amounts
     input1 = Entry(window, width=20, justify="left")
-    input1.place(x=15, y=150, anchor="sw")
+    input1.place(x=15, y=230, anchor="sw")
     input1.bind("<Key>", entry_widget_state_change)
     input2 = Entry(window, width=20, justify="left")
-    input2.place(x=15, y=180, anchor="sw")
+    input2.place(x=15, y=260, anchor="sw")
     input2.bind("<Key>", entry_widget_state_change)
 
     # set the data type of the labels+dropdown menu
@@ -136,22 +132,22 @@ def initialize_gui():
     clicked2 = StringVar()
 
     # initial menu text
-    clicked1.set("Euro")
-    input1.insert(0, live_curr_data[data["Euro"]])
-    clicked2.set("United States Dollar")
-    input2.insert(0, live_curr_data[data["United States Dollar"]])
+    initial_i1 = "Euro"
+    initial_i2 = "United States Dollar"
+    clicked1.set(initial_i1)
+    input1.insert(0, live_curr_data[data[initial_i1]])
+    clicked2.set(initial_i2)
+    input2.insert(0, live_curr_data[data[initial_i2]])
 
     # Create Dropdown menus
     drop1 = ttk.Combobox(window, width=26, textvariable=clicked1)
     drop1['values'] = options
-    drop1.place(x=150, y=151, anchor="sw")
+    drop1.place(x=150, y=231, anchor="sw")
     drop1.bind("<<ComboboxSelected>>", comboBox_state_change)
     drop2 = ttk.Combobox(window, width=26, textvariable=clicked2)
     drop2['values'] = options
-    drop2.place(x=150, y=181, anchor="sw")
+    drop2.place(x=150, y=261, anchor="sw")
     drop2.bind("<<ComboboxSelected>>", comboBox_state_change)
-
-    head_line()
     graph()
 
     window.mainloop()
