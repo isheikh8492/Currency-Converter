@@ -57,19 +57,22 @@ def initialize_gui():
             x_values.append(end_date)
             end_date += delta
 
-        ax = plt.gca()
-        formatter = mdates.DateFormatter("%Y-%m-%d")
-        ax.xaxis.set_major_formatter(formatter)
-        locator = mdates.DayLocator()
-        ax.xaxis.set_major_locator(locator)
-        x_ticks = np.arange(x_values[len(x_values) - 1], x_values[0], datetime.timedelta(days=-15))
-        plt.xticks(x_ticks)
-        plt.plot(x_values, y_values)
+        # ax = plt.gca()
+        # formatter = mdates.DateFormatter("%Y-%m-%d")
+        # ax.xaxis.set_major_formatter(formatter)
+        # locator = mdates.DayLocator()
+        # ax.xaxis.set_major_locator(locator)
+        # x_ticks = np.arange(x_values[len(x_values) - 1], x_values[0], datetime.timedelta(days=-15))
+        # plt.xticks(x_ticks)
+        # plt.plot(x_values, y_values)
 
-        # fig = plt.Figure(figsize=(3.20, 2), dpi=75)
-        # fig.add_subplot(111).plot(x_values, y_values)
-        # chart = FigureCanvasTkAgg(fig, window)
-        # chart.get_tk_widget().place(x=347, y=20, anchor="nw")
+        fig = plt.Figure(figsize=(3, 2), dpi=75)
+        ax = fig.add_subplot(111)
+        ax.plot(x_values, y_values)
+        ax.set_xticks(np.arange(x_values[len(x_values) - 1], x_values[0], datetime.timedelta(days=-15)))
+        fig.tight_layout()
+        chart = FigureCanvasTkAgg(fig, window)
+        chart.get_tk_widget().place(x=370, y=20, anchor="nw")
 
     def head_line():
         var = StringVar()
@@ -113,8 +116,6 @@ def initialize_gui():
             else:
                 input1.delete(0, 'end')
                 input1.insert(0, currency_calculation(input2.get()[0:-1], clicked2.get(), clicked1.get()))
-        head_line()
-        graph()
 
     # labels for inputting the amounts
     input1 = Entry(window, width=20, justify="left")
